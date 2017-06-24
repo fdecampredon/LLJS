@@ -1,0 +1,11 @@
+{
+	"javascript.validate.enable": false,
+	"javascript.format.enable": false,
+	"prettier.bracketSpacing": true,
+	"prettier.printWidth": 80,
+	"prettier.singleQuote": true,
+	"prettier.tabWidth": 2,
+	"prettier.trailingComma": "all",
+	"editor.formatOnSave": true,
+	"eslint.autoFixOnSave": true
+}
