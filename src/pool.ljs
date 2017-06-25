@@ -29,6 +29,8 @@ extern Object;
 
 let Pool = (function (initialSize) {
 
+  extern console;
+
   let obj = []; /* ID to Object Map */
   let ref; /* Reference Count Map */
   let bit; /* Used ID Bit Map */
@@ -207,16 +209,16 @@ let Pool = (function (initialSize) {
       }
     }
 
-    trace("      ID Map: " + getSizeName(bit.length * 4) + "B");
-    trace("   Count Map: " + getSizeName(ref.length * 2) + "B");
-    trace("  Object Map: " + obj.length);
-    trace("Resize Count: " + resizeCount);
+    console.log("      ID Map: " + getSizeName(bit.length * 4) + "B");
+    console.log("   Count Map: " + getSizeName(ref.length * 2) + "B");
+    console.log("  Object Map: " + obj.length);
+    console.log("Resize Count: " + resizeCount);
 
     let count = 0;
     for (let i = 0; i < bit.length; i++) {
       count += bitCount(bit[i]);
     }
-    trace("Object Map Density: " + ((count / (bit.length * 32)) * 100).toFixed(2) + " %");
+    console.log("Object Map Density: " + ((count / (bit.length * 32)) * 100).toFixed(2) + " %");
   }
 
   return {

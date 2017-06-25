@@ -16,7 +16,6 @@ extern parseInt;
 extern process;
 extern snarf;
 extern Error;
-extern print;
 
 extern throwError;
 
@@ -37,7 +36,6 @@ if (typeof process !== "undefined") {
 
 let ck;
 if (mode === NODE_JS) {
-  print = console.log;
   ck = require('memcheck');
 } else if (mode === JS_SHELL) {
   ck = (load('memcheck.js'), memcheck);
@@ -158,7 +156,7 @@ function shadowMemory(mem, uint memsize, uint shift) {
     mem[name] = val;
     return true;
   };
-  return Proxy.create(handler);
+  return new Proxy({},handler);;
 }
 
 function reset() {

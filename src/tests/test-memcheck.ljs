@@ -2,7 +2,6 @@ extern undefined;
 extern console;
 extern process;
 extern snarf;
-extern print;
 extern memory;
 extern assertEq;
 
@@ -28,7 +27,6 @@ if (typeof process !== "undefined") {
 let m, assert, assertTrue;
 if (mode === NODE_JS) {
   m = require('memory');
-  print = console.log;
   assert = require('assert').strictEqual;
   assertTrue = require('assert').ok;
 } else {
@@ -165,7 +163,7 @@ function test_access() {
           "had no bad accesses");
   }
 
-  print("running bad access tests (gets/sets of unallocated memory)...");
+  console.log("running bad access tests (gets/sets of unallocated memory)...");
   
   m.reset();
   badGetU8();
@@ -191,7 +189,7 @@ function test_access() {
   m.reset();
   getStruct();
   
-  print("passed");
+  console.log("passed");
   m.reset();
 }
 
@@ -253,7 +251,7 @@ function test_undefined() {
               "tried to get a undef u8 location");
   }
   
-  print("running undefined tests (gets of allocated but undefined memory)...");
+  console.log("running undefined tests (gets of allocated but undefined memory)...");
   
   m.reset();
   undefU8();
@@ -267,7 +265,7 @@ function test_undefined() {
   m.reset();
   undefByte();
   
-  print("passed");
+  console.log("passed");
   m.reset();
 }
 
@@ -295,7 +293,7 @@ function test_frees() {
               "tried to double free");
   }
   
-  print("running free tests (double frees, or general frees of unalloced memory)...");
+  console.log("running free tests (double frees, or general frees of unalloced memory)...");
   
   m.reset();
   badFree();
@@ -303,7 +301,7 @@ function test_frees() {
   m.reset();
   doubleFree();
   
-  print("passed");
+  console.log("passed");
   m.reset();
 }
 
@@ -330,7 +328,7 @@ function test_leak() {
           "had one hundred leaks");
   }
   
-  print("running leak tests (forgot to call delete)...");
+  console.log("running leak tests (forgot to call delete)...");
   
   m.reset();
   leak();
@@ -338,7 +336,7 @@ function test_leak() {
   m.reset();
   leakLoop();
   
-  print("passed");
+  console.log("passed");
   m.reset();
 }
 
@@ -360,7 +358,7 @@ function test_callstack() {
     assert(1, errors.length, "only had one bad access");
     assertTrue(errors[0].trace[0].indexOf("test_callstack") !== -1,
               "this function should be on the top of the callstack")
-    print("passed")
+    console.log("passed")
   }
 
 }

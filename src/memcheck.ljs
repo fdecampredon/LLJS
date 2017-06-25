@@ -1,5 +1,4 @@
 extern undefined;
-extern print;
 extern console;
 extern snarf;
 extern process;
@@ -26,10 +25,6 @@ if (typeof process !== "undefined") {
 }
 
 let ck, root, dbg;
-if (mode === NODE_JS) {
-  print = console.log;
-} 
-
 let memcheck = {}; 
 
 // The shadow memory (SM) is a typed array with a corresponding U1
